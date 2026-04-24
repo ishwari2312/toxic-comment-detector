@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toxic Comment Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .toxic {
+            color: red;
+        }
+
+        .clean {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>💬 Toxic Comment Detector</h2>
+
+        <form action="/predict" method="post">
+            <textarea name="comment" rows="4" placeholder="Type your comment here..."></textarea>
+            <br>
+            <button type="submit">Check</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result 
+                {% if 'Toxic' in prediction %}toxic{% else %}clean{% endif %}">
+                {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
